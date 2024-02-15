@@ -49,24 +49,23 @@ width: 430;
 }
 
 .google{
-            text-align: center;
-            font-family: cursive;
-            font-size: 18;
-            width: 150px;
-            height: 40px;
-            color: brown;
-            
-        }
+text-align: center;
+font-family: cursive;
+font-size: 18;
+width: 150px;
+height: 40px;
+color: brown;
+transition: transform 0.3s; 
+}
 
 .google:hover{
-            text-align: center;
-            font-family: cursive;
-            font-size: 18.5;
-            width: 150px;
-            height: 40px;
-            color: blueviolet;
-            transform: translateY(10px);
-            
-        }
+text-align: center;
+font-family: cursive;
+font-size: 18.5;
+width: 150px;
+height: 40px;
+color: blueviolet;
+transform: translateY(10px);
+}
 
 
