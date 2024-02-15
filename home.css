@@ -46,7 +46,27 @@ text-align: center;
 padding: 0px;
 height: 220;
 width: 430;
-
 }
+
+.google{
+            text-align: center;
+            font-family: cursive;
+            font-size: 18;
+            width: 150px;
+            height: 40px;
+            color: brown;
+            
+        }
+
+.google:hover{
+            text-align: center;
+            font-family: cursive;
+            font-size: 18.5;
+            width: 150px;
+            height: 40px;
+            color: blueviolet;
+            transform: translateY(10px);
+            
+        }
 
 
