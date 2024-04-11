@@ -65,7 +65,16 @@ font-size: 18.5;
 width: 200px;
 height: 50px;
 color: blueviolet;
-transform: translateY(10px);
+transform: translateY(5px);
 }
 
+.google:active{
+text-align: center;
+font-family: cursive;
+font-size: 20;
+width: 200px;
+height: 50px;
+color: blueviolet;
+transform: translateY(5px);
+}
 
