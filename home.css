@@ -62,8 +62,8 @@ transition: transform 0.3s;
 text-align: center;
 font-family: cursive;
 font-size: 18.5;
-width: 200px;
-height: 50px;
+width: 160px;
+height: 45px;
 color: blueviolet;
 transform: translateY(5px);
 }
@@ -72,8 +72,8 @@ transform: translateY(5px);
 text-align: center;
 font-family: cursive;
 font-size: 20;
-width: 200px;
-height: 50px;
+width: 160px;
+height: 45px;
 color: blueviolet;
 transform: translateY(5px);
 }
