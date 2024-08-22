@@ -1,34 +1,100 @@
-<html>
-
+<!DOCTYPE html>
+<html lang="en">
 <head>
-
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title> My Website </title>
-<link rel="stylesheet" href = "home.css">
-
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Chat Application</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #000;
+            color: #FFD700;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            height: 100vh;
+            justify-content: center;
+        }
+        #chat {
+            width: 80%;
+            max-width: 600px;
+            border: 1px solid #FFD700;
+            padding: 10px;
+            border-radius: 5px;
+            background-color: #333;
+        }
+        #messages {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+            height: 300px;
+            overflow-y: auto;
+        }
+        #messages li {
+            margin-bottom: 10px;
+        }
+        #message-form {
+            display: flex;
+            margin-top: 10px;
+        }
+        #message-input {
+            flex: 1;
+            padding: 10px;
+            border: 1px solid #FFD700;
+            border-radius: 5px;
+            background-color: #000;
+            color: #FFD700;
+        }
+        #send-button {
+            padding: 10px 20px;
+            border: none;
+            border-radius: 5px;
+            background-color: #800080;
+            color: #FFD700;
+            cursor: pointer;
+            margin-left: 10px;
+        }
+        #send-button:hover {
+            background-color: #FFD700;
+            color: #000;
+        }
+    </style>
 </head>
-
 <body>
-<nav> <a href="two.html"> two </a> </nav>
-<header class="header"> <h1> Programmers </h1> </header>
-<main class = "main"> 
+    <div id="chat">
+        <ul id="messages"></ul>
+        <form id="message-form">
+            <input id="message-input" autocomplete="off" placeholder="Type your message here..." />
+            <button id="send-button">Send</button>
+        </form>
+    </div>
+    <script src="/socket.io/socket.io.js"></script>
+    <script>
+        const socket = io();
 
-<h2 align="center"> Programming Languages </h2>
+        // DOM elements
+        const messages = document.getElementById('messages');
+        const form = document.getElementById('message-form');
+        const input = document.getElementById('message-input');
 
+        // Listen for 'chat message' events from the server
+        socket.on('chat message', (msg) => {
+            const li = document.createElement('li');
+            li.textContent = msg;
+            messages.appendChild(li);
+            messages.scrollTop = messages.scrollHeight; // Scroll to the bottom
+        });
 
-<img id="javaimg" src="java.png">
-<img id="cppimg" src="C++.png">
-<img id="pyimg" src="python.png">
-<img id="jsimg" src="javascript.png">
-
-  <a href="#javaimg" target="_blank" > <button class="google"> My Project </button> </a>
-  <a href="" target="_blank" > <button class="google"> GAD proj </button> </a>
-
-</main>
-<footer> <p> Bye! </p></footer>
-
-
+        // Handle form submission
+        form.addEventListener('submit', (e) => {
+            e.preventDefault(); // Prevent form from reloading the page
+            if (input.value.trim()) {
+                socket.emit('chat message', input.value);
+                input.value = '';
+            }
+        });
+    </script>
 </body>
-
-
 </html>
