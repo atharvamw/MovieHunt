@@ -1,100 +1,32 @@
 <!DOCTYPE html>
-<html lang="en">
+<html>
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Chat Application</title>
-    <style>
-        body {
-            font-family: Arial, sans-serif;
-            background-color: #000;
-            color: #FFD700;
-            margin: 0;
-            padding: 0;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            height: 100vh;
-            justify-content: center;
-        }
-        #chat {
-            width: 80%;
-            max-width: 600px;
-            border: 1px solid #FFD700;
-            padding: 10px;
-            border-radius: 5px;
-            background-color: #333;
-        }
-        #messages {
-            list-style: none;
-            padding: 0;
-            margin: 0;
-            height: 300px;
-            overflow-y: auto;
-        }
-        #messages li {
-            margin-bottom: 10px;
-        }
-        #message-form {
-            display: flex;
-            margin-top: 10px;
-        }
-        #message-input {
-            flex: 1;
-            padding: 10px;
-            border: 1px solid #FFD700;
-            border-radius: 5px;
-            background-color: #000;
-            color: #FFD700;
-        }
-        #send-button {
-            padding: 10px 20px;
-            border: none;
-            border-radius: 5px;
-            background-color: #800080;
-            color: #FFD700;
-            cursor: pointer;
-            margin-left: 10px;
-        }
-        #send-button:hover {
-            background-color: #FFD700;
-            color: #000;
-        }
-    </style>
+  <title>Chat</title>
+  <script src="https://cdn.socket.io/4.0.0/socket.io.min.js"></script>
+  <script>
+    document.addEventListener('DOMContentLoaded', (event) => {
+      const socket = io('https://-00-30h6kt8mf5x1c.sisko.replit.dev'); // Replace with your Replit URL
+
+      document.getElementById('form').addEventListener('submit', function(e) {
+        e.preventDefault();
+        const input = document.getElementById('input');
+        socket.emit('chat message', input.value);
+        input.value = '';
+        return false;
+      });
+
+      socket.on('chat message', function(msg) {
+        const item = document.createElement('li');
+        item.textContent = msg;
+        document.getElementById('messages').appendChild(item);
+      });
+    });
+  </script>
 </head>
 <body>
-    <div id="chat">
-        <ul id="messages"></ul>
-        <form id="message-form">
-            <input id="message-input" autocomplete="off" placeholder="Type your message here..." />
-            <button id="send-button">Send</button>
-        </form>
-    </div>
-    <script src="/socket.io/socket.io.js"></script>
-    <script>
-        const socket = io();
-
-        // DOM elements
-        const messages = document.getElementById('messages');
-        const form = document.getElementById('message-form');
-        const input = document.getElementById('message-input');
-
-        // Listen for 'chat message' events from the server
-        socket.on('chat message', (msg) => {
-            const li = document.createElement('li');
-            li.textContent = msg;
-            messages.appendChild(li);
-            messages.scrollTop = messages.scrollHeight; // Scroll to the bottom
-        });
-
-        // Handle form submission
-        form.addEventListener('submit', (e) => {
-            e.preventDefault(); // Prevent form from reloading the page
-            if (input.value.trim()) {
-                socket.emit('chat message', input.value);
-                input.value = '';
-            }
-        });
-    </script>
+  <ul id="messages"></ul>
+  <form id="form" action="">
+    <input id="input" autocomplete="off" /><button>Send</button>
+  </form>
 </body>
 </html>
