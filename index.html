@@ -1,32 +1,34 @@
-<!DOCTYPE html>
 <html>
+
 <head>
-  <title>Chat</title>
-  <script src="https://cdn.socket.io/4.0.0/socket.io.min.js"></script>
-  <script>
-    document.addEventListener('DOMContentLoaded', (event) => {
-      const socket = io(); // Replace with your Replit URL
 
-      document.getElementById('form').addEventListener('submit', function(e) {
-        e.preventDefault();
-        const input = document.getElementById('input');
-        socket.emit('chat message', input.value);
-        input.value = '';
-        return false;
-      });
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title> My Website </title>
+<link rel="stylesheet" href = "home.css">
 
-      socket.on('chat message', function(msg) {
-        const item = document.createElement('li');
-        item.textContent = msg;
-        document.getElementById('messages').appendChild(item);
-      });
-    });
-  </script>
 </head>
+
 <body>
-  <ul id="messages"></ul>
-  <form id="form" action="">
-    <input id="input" autocomplete="off" /><button>Send</button>
-  </form>
+<nav> <a href="two.html"> two </a> </nav>
+<header class="header"> <h1> Programmers </h1> </header>
+<main class = "main"> 
+
+<h2 align="center"> Programming Languages </h2>
+
+
+<img id="javaimg" src="java.png">
+<img id="cppimg" src="C++.png">
+<img id="pyimg" src="python.png">
+<img id="jsimg" src="javascript.png">
+
+  <a href="#javaimg" target="_blank" > <button class="google"> My Project </button> </a>
+  <a href="" target="_blank" > <button class="google"> GAD proj </button> </a>
+
+</main>
+<footer> <p> Bye! </p></footer>
+
+
 </body>
+
+
 </html>
