@@ -1,0 +1,89 @@
+<html lang="en">
+<head>
+    <title>MovieHunt</title>
+	<link rel="stylesheet" href="style.css">
+	<style>
+	
+		#profileHeading
+		{
+			padding:0px;
+			margin:0px;
+			margin-bottom:10px;
+			color: orange;
+			font-size: 1.8rem;
+			font-family: Verdana;
+			z-index: 2;
+			
+		}
+		.hero-section{
+			display: flex;
+			align-items: flex-start;
+		}
+		.form
+		{
+			padding: 20px;
+			margin:20px;
+			display: flex;
+			flex-direction: column;
+			background-color: black;
+			gap: 20px 20px;
+		}
+		
+		.form .textbox
+		{
+			background-color: black;
+			border: none;
+			border-radius: 10px;
+			height: 50px;
+			width: 500px;
+			color: white;
+			font-size: 16px;
+			font-family: Monospace;
+			box-shadow: 0px 0px 10px gray;
+			padding: 15px;
+		}
+		
+		.form .textbox::placeholder
+		{
+			
+			color: gray;
+			font-size: 16px;
+			font-family: Monospace;
+		}
+		
+		.form .textbox:focus
+		{
+			outline: none;
+			caret-color: #FABC3F;
+			
+		}
+		
+	</style>
+</head>
+<body>
+	<script src="navbar.js" defer></script>
+
+    <div class="hero-section">
+		<img src="back4.jpg" alt="Background Image">
+		
+        
+        
+	<div class="form">
+		
+		
+	
+		<h1 id="profileHeading">Profile</h1>
+		
+		<div>
+		<input type="text" name="username" placeholder="Username" id="usertf" class="textbox">
+		</div>
+		<input type="text" name="username" placeholder="Username" id="usertf" class="textbox">
+		
+	</div>	
+		
+    </div>
+	
+    <script src="loader.js" defer></script>
+	
+</body>
+</html>

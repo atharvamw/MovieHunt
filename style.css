@@ -80,7 +80,7 @@ body {
 			z-index: -1;
 		}
 
-		.hero-section h1 {
+		.hero-section #heading{
 			color: orange;
 			text-shadow: 5px 5px 13px black;
 			font-family: Garamond;
