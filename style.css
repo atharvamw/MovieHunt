@@ -90,10 +90,13 @@ body {
 		}
 
 		.movies-section {
-			padding: 2em;
 			font-family: Verdana;
 			font-size: 13px;
-			position: relative;
+		}
+		
+		.movies-section .slide-container
+		{
+			padding: 4em;
 		}
 	
 		.movies-section h2 {
@@ -106,6 +109,9 @@ body {
 			scroll-behavior: smooth;
 			-webkit-overflow-scrolling: touch;
 		}
+		.slide-container{
+			position: relative;
+		}
 
 		.movies-slider::-webkit-scrollbar {
 			display: none;
@@ -113,23 +119,25 @@ body {
 		
 		.scroll-btn {
 		position: absolute;
-		top: 46%;
+		top: 44%;
 		width: 40px;
 		height: 40px;
 		background-color: rgba(0, 0, 0, 0.5);
 		color: #fff;
 		border: none;
-		font-size: 24px;
+		font-size: 28px;
 		cursor: pointer;
 		z-index: 1;
 		}
 
 		.prev-btn {
-			left: 10px;
+			left: 8px;
+			border-radius: 10px;
 		}
 
 		.next-btn {
-			right: 10px;
+			right: 8px;
+			border-radius: 10px;
 		}
 		
 		.movie-card {
