@@ -92,17 +92,9 @@ body {
 		.movies-section {
 			font-family: Verdana;
 			font-size: 13px;
-		}
-		
-		.movies-section .slide-container
-		{
-			padding: 4em;
+			padding-top: 10px
 		}
 	
-		.movies-section h2 {
-			margin-bottom: 30px;
-		}
-
 		.movies-slider {
 			display: flex;
 			overflow-x: auto;
@@ -111,6 +103,13 @@ body {
 		}
 		.slide-container{
 			position: relative;
+			padding-left: 4em;
+			padding-right: 4em;
+			padding-top: 3em;
+		}
+		.slide-container h2{
+			margin-top: 0px;
+			margin-bottom: 20px;
 		}
 
 		.movies-slider::-webkit-scrollbar {
@@ -150,7 +149,7 @@ body {
 			padding: 10px;
 			background-color: #2b2c2e;
 			border-radius: 20px;
-			margin-bottom: 50px;
+			margin-bottom: 20px;
 		}
 
 		.movie-card img {

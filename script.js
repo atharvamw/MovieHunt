@@ -40,6 +40,10 @@ var cardsOfTheGenres = {};
 				let sliderContainer = document.createElement("div");
 				sliderContainer.className = "slide-container";
 				
+				let h2 = document.createElement("h2");
+				h2.innerText = genre;
+				sliderContainer.append(h2);
+				
 				let div = document.createElement("div");
 				div.id = genre;
 				div.className = "movies-slider";
