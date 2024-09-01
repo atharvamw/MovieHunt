@@ -4,7 +4,7 @@
 	<link rel="stylesheet" href="style.css">
 </head>
 <body>
-	<script src="navbar.js" defer></script>
+	
 
     <div class="hero-section">
 	
@@ -14,14 +14,16 @@
     </div>
 
     <!-- 2024 Movies Section -->
-    <div class="movies-section">
+    <div class="movies-section" id="abc">
 	
         <h2 id="currentYear">2024 Movies</h2>
+	
         <div class="movies-slider" id="2024"> </div> 
-		
+		<button class="scroll-btn prev-btn" id="prev-btn">&#8249;</button>
+		<button class="scroll-btn next-btn" id="next-btn">&#8250;</button>
     </div>
 	
-	
+	<script src="navbar.js" defer></script>
     <script src="loader.js" defer></script>
     <script src="auth.js" defer></script>
     <script src="script.js" defer></script>

@@ -1,6 +1,11 @@
 	let username = localStorage.getItem("username")
 	
-	if(username!==null)
+	function loadName()
 	{
-		document.getElementById("navprofile").insertAdjacentText('beforeend',username);
+		if(username!==null)
+		{
+			document.getElementById("navprofile").insertAdjacentText('beforeend',username);
+		}
 	}
+	
+	loadName();

@@ -93,8 +93,9 @@ body {
 			padding: 2em;
 			font-family: Verdana;
 			font-size: 13px;
+			position: relative;
 		}
-
+	
 		.movies-section h2 {
 			margin-bottom: 30px;
 		}
@@ -102,12 +103,38 @@ body {
 		.movies-slider {
 			display: flex;
 			overflow-x: auto;
-			scroll-snap-type: x mandatory;
+			scroll-behavior: smooth;
+			-webkit-overflow-scrolling: touch;
 		}
 
+		.movies-slider::-webkit-scrollbar {
+			display: none;
+		}
+		
+		.scroll-btn {
+		position: absolute;
+		top: 46%;
+		width: 40px;
+		height: 40px;
+		background-color: rgba(0, 0, 0, 0.5);
+		color: #fff;
+		border: none;
+		font-size: 24px;
+		cursor: pointer;
+		z-index: 1;
+		}
+
+		.prev-btn {
+			left: 10px;
+		}
+
+		.next-btn {
+			right: 10px;
+		}
+		
 		.movie-card {
 			margin-right: 35px;
-			/* scroll-snap-align: start; */
+			scroll-snap-align: start;
 			width: 200px;
 			text-align: center;
 			font-family: Verdana;

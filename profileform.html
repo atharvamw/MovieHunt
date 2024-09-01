@@ -133,13 +133,9 @@
 	</style>
 </head>
 <body>
-	<script src="navbar.js" defer></script>
-
     <div class="hero-section">
 		<img src="back4.jpg" alt="Background Image">
 		
-        
-        
 	<form name="form" class="form" onsubmit="Save()" onreset="Clear()">
 		
 		<h1 id="profileHeading">Profile</h1>
@@ -159,76 +155,10 @@
 	</form>	
 		
     </div>
-	
-    <script src="loader.js" defer></script>
+	<script src="navbar.js" defer></script>
 	<script src="auth.js" defer></script>
-	<script defer>
+	<script src="loader.js" defer></script>
+	<script src = "profile.js" defer></script>
 		
-		setTimeout(()=>{
-		
-			if(username !== null)
-			{
-				document.getElementById("usertf").value = username;
-			}
-			
-			let genreArr = JSON.parse(localStorage.getItem("genres"));
-			
-			
-			for(key in movieGenres)
-			{	
-			
-				let div = document.createElement("div");
-				div.className = "genre";
-				
-				let elem = document.createElement("input");
-				elem.type = "checkbox";
-				elem.name = 'fgenre';
-				elem.id = movieGenres[key];
-				elem.value = movieGenres[key];
-				
-				let lab = document.createElement("label");
-				lab.for = elem.id;
-				lab.innerText = movieGenres[key];
-				
-				div.append(elem);
-				div.append(lab);
-				
-				document.querySelector("#genres").append(div);
-				
-			}
-			
-			if(genreArr!==null)
-			{
-				for(genre of genreArr)
-				{	
-					document.form[genre].checked = true;
-				}
-			}
-			
-		},200);
-		
-		function Save()
-		{	
-			event.preventDefault();
-			let checkedBoxes = document.querySelectorAll("input[name='fgenre']:checked");
-			let strGenre = [];
-			for(box of checkedBoxes)
-			{
-				strGenre.push(box.id);
-			}
-			console.log(strGenre);
-			localStorage.setItem('genres', JSON.stringify(strGenre));
-			localStorage.setItem('username', document.form.username.value);
-		}
-		
-		function Clear()
-		{
-			localStorage.clear();
-		}
-
-		
-	
-	</script>
-	
 </body>
 </html>
