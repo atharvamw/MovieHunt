@@ -1,13 +1,14 @@
 function Save() // when save is clicked
 {	
 	event.preventDefault();
-	let checkedBoxes = document.querySelectorAll("input[name='fgenre']:checked");
+	let checkedBoxes = document.querySelectorAll(".genre input[type='checkbox']:checked");
+	
 	let strGenre = [];
 	for(box of checkedBoxes)
 	{
 		strGenre.push(box.id);
 	}
-	console.log(strGenre);
+	
 	localStorage.setItem('genres', JSON.stringify(strGenre));
 	localStorage.setItem('username', document.form.username.value);
 }
