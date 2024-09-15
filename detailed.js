@@ -22,11 +22,22 @@
 			if(item.name.toLowerCase().includes("official trailer"))
 			{
 				ytKey = item.key;
+				break;
 			}
 		}
 		
 		if(ytKey === undefined)
 		{	
+			for(item of trailerData.results)
+			{
+				if(item.name.toLowerCase().includes("trailer"))
+				{
+					ytKey = item.key;
+					break;
+				}
+			}
+			
+			if(ytKey === undefined)
 			ytKey = trailerData.results[0].key
 		}
 		
