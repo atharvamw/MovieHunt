@@ -1,5 +1,7 @@
 const apiKey = 'f2ce292a2059f60e320ca8e3d58a779c';
 const genreUrl = `https://api.themoviedb.org/3/genre/movie/list?api_key=${apiKey}`
+
+const imgPrefixLink = "https://image.tmdb.org/t/p/w500";
 const movieGenres= {};
 	
 async function loadMovieGenres()
@@ -9,14 +11,21 @@ async function loadMovieGenres()
 	data.genres.forEach(genre => movieGenres[genre.id] = genre.name);
 }
 
+function cardClick(event)
+{
+	localStorage.setItem("card",`${this.querySelector("h3").innerText}`);
+	location.href = "detailedView.html"
+}
 
 function insertCard(cardArr, index, data, appendtag)
 {			
-	cardArr[index] = document.createElement("div");
+	cardArr[index] = document.createElement("a");
 	cardArr[index].className = "movie-card";
+	
+	cardArr[index].onclick = cardClick;
 				
 	var img = new Image();
-	img.src = `https://image.tmdb.org/t/p/w500${data.results[index].poster_path}`;
+	img.src = `${imgPrefixLink}${data.results[index].poster_path}`;
 	cardArr[index].append(img);
 				
 	var head = document.createElement("h3");

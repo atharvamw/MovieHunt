@@ -1,0 +1,107 @@
+<html>
+<head>
+	<link rel="stylesheet" href="style.css">
+	<style>
+		
+		#movieInfo{
+			margin: 40px;
+			display: flex;
+			flex-direction: column;
+		
+		}
+		#heading{
+			margin: 10px;
+			margin-bottom: 0px;
+		}
+		
+		#rDate{
+			margin: 10px;
+			margin-top: 5px;
+			color: gray;
+		}
+		#rateContainer
+		{
+			display: flex;
+			flex-direction: row;
+			gap: 0px 0px;
+			justify-content: left;
+			align-items: center;
+			position: relative;
+			
+		}
+		#rateContainer div
+		{
+			margin-left: 200px;
+			position: absolute;
+			right: 3vw;
+			top: 5px;
+			margin-left: 20px;
+			<!-- font-family: Verdana; -->
+		}
+		
+		#rating{
+			margin: 10px;
+			margin-top: 5px;
+			margin-bottom: 0px;
+		}
+		#voteCount{
+			margin: 10px;
+			margin-top: 3px;
+			margin-left: 71px;
+			color: gray;
+		}
+		
+		#poster{
+			width: 400px;
+			height: 700px;
+			margin: 10px;
+			margin-top: 20px;
+		}
+		
+		#back{
+			width: 1000px;
+			height: 700px;
+			margin: 10px;
+			margin-top: 20px;
+		}
+		
+		#trailer{
+			width: 1240px;
+			height: 700px;
+			margin: 10px;
+			margin-top: 20px;
+			
+		}
+	
+	</style>
+</head>
+<body>
+	
+	<div id="movieInfo">
+		<div id="rateContainer">
+			<h1 id="heading"></h1>
+			
+			<div>
+				<h3 id="rating"></h3>
+				<h3 id="voteCount"></h3>
+			</div>
+
+		</div>
+		<h3 id="rDate"></h3>
+		
+		
+		
+		<div id="mediaContainer">
+			
+			<img id="poster">
+			<!-- <img id="back"> -->
+			<iframe id="trailer" frameborder="0" ></iframe>
+		</div>
+	</div>
+
+<script src="navbar.js"></script>
+<script src="loader.js"></script>
+<script src="detailed.js"></script>
+
+</body>
+</html>
