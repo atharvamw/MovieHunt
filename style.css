@@ -94,7 +94,6 @@ body {
 			font-size: 13px;
 			padding-top: 10px
 		}
-	
 		.movies-slider {
 			display: flex;
 			overflow-x: auto;
@@ -126,7 +125,6 @@ body {
 		border: none;
 		font-size: 28px;
 		cursor: pointer;
-		z-index: 1;
 		}
 
 		.prev-btn {
@@ -141,7 +139,6 @@ body {
 		
 		.movie-card {
 			margin-right: 35px;
-			scroll-snap-align: start;
 			width: 200px;
 			text-align: center;
 			font-family: Verdana;
@@ -178,6 +175,5 @@ body {
 		}
 		
 		.movies-slider a{
-			
 			cursor: pointer;
 		}

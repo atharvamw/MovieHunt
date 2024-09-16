@@ -36,7 +36,6 @@
 			right: 3vw;
 			top: 5px;
 			margin-left: 20px;
-			<!-- font-family: Verdana; -->
 		}
 		
 		#rating{
@@ -59,12 +58,93 @@
 		}
 		
 		
-		#trailer{
+		#trailer
+		{
 			width: 1100px;
 			height: 650px;
 			margin: 10px;
 			margin-top: 20px;
+		}
+		
+		#videoContainer
+		{
+			margin: 10px;
+			margin-top: 60px;
+			position: relative;
+			display: flex;
+			flex-direction: column;
+		}
+		#head
+		{
+			color: orange;
+			font-size: 1.8rem;
+			margin-block: 0px;
+		}
+		.video
+		{
+			width: 710px;
+			height: 400px;
+			margin-top: 20px;
+			flex: 0 0 auto;
+		}
+		
+		.scroll-btn {
+		position: absolute;
+		top: 54%;
+		width: 40px;
+		height: 40px;
+		background-color: rgba(0, 0, 0, 0.5);
+		border: none;
+		font-size: 28px;
+		}
+
+		.prev-btn {
+			left: 0px;
+			border-radius: 10px;
+		}
+
+		.next-btn {
+			right: 0px;
+			border-radius: 10px;
+		}
+		#videos-slider {
+			display: flex;
+			overflow-x: auto;
+			scroll-behavior: smooth;
+			-webkit-overflow-scrolling: touch;
+			gap: 10px 20px;
+		}
+				
+		#videos-slider::-webkit-scrollbar {
+			display: none;
+		}
+		
+		#castContainer{
+			margin: 10px;
+			margin-top: 60px;
+		}
+		
+		#castGrid
+		{	
+			margin-top: 30px;
+			display: grid;
+			grid-template-columns: 1fr 1fr;
+			gap: 40px 0px;
+		}
+		
+		.castCard
+		{
+			display: flex;
 			
+		}
+		
+		.castCard .castImg
+		{
+			width: 150px;
+			height: 150px;
+			border-radius: 150px;
+			margin-right: 20px;
+			object-fit: cover;
 		}
 	
 	</style>
@@ -83,14 +163,28 @@
 		</div>
 		<h3 id="rDate"></h3>
 		
-		
-		
 		<div id="mediaContainer">
 			
 			<img id="poster">
-			<!-- <img id="back"> -->
+			
 			<iframe id="trailer" frameborder="0" ></iframe>
 		</div>
+		
+		
+		<div id="videoContainer">
+			<h1 id="head">Videos</h1>	
+			<button class="scroll-btn prev-btn"> &#8249;</button>
+			<button class="scroll-btn next-btn"> &#8250;</button>
+			<div id="videos-slider" id="2024"></div> 
+		</div>
+		
+		<div id="castContainer">
+			<h1 id="head">Cast</h1>	
+			<div id="castGrid">
+
+			</div> 
+		</div>
+		
 	</div>
 
 <script src="navbar.js"></script>
