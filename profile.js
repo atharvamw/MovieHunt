@@ -26,7 +26,9 @@ if(username !== null) // to load username on profile section
 let genreArr = JSON.parse(localStorage.getItem("genres"));			
 
 function createGenreCheckboxes() // dynamically creates the checkbox elements for all genres to tick.
-{
+{	
+	let genresSection = document.querySelector("#genres");
+	
 	for(key in movieGenres)
 	{	
 		let div = document.createElement("div");
@@ -43,7 +45,7 @@ function createGenreCheckboxes() // dynamically creates the checkbox elements fo
 		div.append(elem);
 		div.append(lab);
 						
-		document.querySelector("#genres").append(div);
+		genresSection.append(div);
 	}
 }
 			

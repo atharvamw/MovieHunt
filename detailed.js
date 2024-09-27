@@ -90,7 +90,7 @@
 			div.className = "castCard";
 			div.innerHTML = 
 			`	
-					<img class="castImg" src="${imgPrefixLink + imgKey}" onerror="this.onerror=null; this.src='user.png';">
+					<img class="castImg" src="${imgPrefixLink + imgKey}" onerror="this.onerror=null; this.src='Images/user.png';">
 					<div>
 						<h2 class="castName">${castName}</h2>
 						<h3 class="charName">${charName}</h3>

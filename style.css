@@ -52,6 +52,16 @@ body {
 			border-radius: 15px;
 			padding: 8px;
 		}
+		
+		.nav-bar input{
+			background-color: #222222;
+			border: none;
+			color: white;
+			outline: none;
+			font-size: 16px;
+			
+			
+		}
 
 		.nav-bar a {
 			color:orange;

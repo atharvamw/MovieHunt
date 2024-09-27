@@ -17,7 +17,7 @@ function cardClick(event)
 	location.href = "detailedView.html"
 }
 
-function insertCard(cardArr, index, data, appendtag)
+function insertCard(cardArr, index, data, appendtagId)
 {			
 	cardArr[index] = document.createElement("a");
 	cardArr[index].className = "movie-card";
@@ -40,7 +40,7 @@ function insertCard(cardArr, index, data, appendtag)
 		cardArr[index].append(genretag);
 	}
 			
-	document.getElementById(appendtag).append(cardArr[index]);
+	document.getElementById(appendtagId).append(cardArr[index]);
 		
 }
 	
