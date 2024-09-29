@@ -62,8 +62,11 @@
 		
 		if(ytKey === undefined)
 		{	
-			if(ytAltKey === undefined)
-			ytKey = trailerData.results[0].key
+			if(ytAltKey !== undefined)
+			ytKey = ytAltKey;
+			delete ytAltKey;
+			else
+			ytKey = trailerData.results[0].key;
 		}
 		
 		var trailerURL = ytURL + ytKey;

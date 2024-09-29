@@ -1,38 +1,18 @@
 <html>
 <link rel="stylesheet" href="style.css">
-<style>
-
-		.hero-section {
-			position: relative;
-			height: 150vh;
-			display: flex;
-			justify-content: center;
-			align-items: center;
-			color: #fff;
-		}
-		
-</style>
 <body>
 
 <script src="navbar.js"></script>
 <script src="auth.js"></script>
 <script src="loader.js"></script>
 <script src="search.js" defer></script>
-
-	<!-- <div class="hero-section"> -->
-	<!-- <img src="Images/back4.jpg" alt="Background Image"> -->
-	<!-- </div> -->
-	
 	
     <div class="movies-section" id="abc">
 
 		<div class="slide-container">
 			<h2 id="currentYear">Results</h2>
-			<button class="scroll-btn prev-btn"> &#8249; </button>
-			<button class="scroll-btn next-btn"> &#8250; </button>
-			<div class="movies-slider" id="searchCards"></div> 
+			<div class="movies-slider" id="searchCards" style="flex-wrap: wrap;"></div> 
 		</div>
-		
     </div>
 
 </body>
