@@ -54,6 +54,10 @@
 				videoSection.append(vid);
 				vidCount++;
 			}
+			else if(vidCount==6)
+			{	
+				break;
+			}
 		}
 		
 		if(ytKey === undefined)
@@ -67,12 +71,9 @@
 		
 		for(cast of castList)
 		{
-			console.log(cast);
 			addCast(cast.profile_path, cast.name, cast.character);
 		}
 		
-		
-
 	}
 	
 		function addCast(imgKey, castName, charName)
