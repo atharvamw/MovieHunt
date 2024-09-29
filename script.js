@@ -14,7 +14,7 @@ var cardsOfTheGenres = {};
 		
 		for(index in data.results)
 		{	
-			insertCard(cardsOfTheYear,index,data,"2024");
+			insertCard(cardsOfTheYear,index,data.results,"2024");
 		}
 	}
 	
@@ -61,7 +61,7 @@ var cardsOfTheGenres = {};
 				
 				for(index in data.results)
 				{	
-					insertCard(cardsOfTheGenres[genre],index,data,genre);
+					insertCard(cardsOfTheGenres[genre],index,data.results,genre);
 				}
 
 			}

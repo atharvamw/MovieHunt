@@ -13,7 +13,7 @@ async function loadMovieGenres()
 
 function cardClick(event)
 {
-	localStorage.setItem("card",`${this.querySelector("h3").innerText}`);
+	localStorage.setItem("selectedMovieId",`${this.id}`);
 	location.href = "detailedView.html"
 }
 
@@ -21,18 +21,19 @@ function insertCard(cardArr, index, data, appendtagId)
 {			
 	cardArr[index] = document.createElement("a");
 	cardArr[index].className = "movie-card";
+	cardArr[index].id = data[index].id;
 	
 	cardArr[index].onclick = cardClick;
 				
 	var img = new Image();
-	img.src = `${imgPrefixLink}${data.results[index].poster_path}`;
+	img.src = `${imgPrefixLink}${data[index].poster_path}`;
 	cardArr[index].append(img);
 				
 	var head = document.createElement("h3");
-	head.innerText = `${data.results[index].title}`;
+	head.innerText = `${data[index].title}`;
 	cardArr[index].append(head);
 		
-	for(id of data.results[index].genre_ids)
+	for(id of data[index].genre_ids)
 	{	
 		var genretag = document.createElement("p");
 		genretag.className = "genre-tag";

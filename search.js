@@ -12,13 +12,9 @@ async function getSearchResults()
 	
 	for(var i=0; i<data.results.length; i++)
 	{
-		insertCard(searchedArr, i, data, "searchCards");
+		insertCard(searchedArr, i, data.results, "searchCards");
 	}
 }
-
-
-
-
 
 
 getSearchResults();
