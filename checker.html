@@ -1,0 +1,210 @@
+<html>
+<body>
+<script src="navbar.js"></script>
+<link rel="stylesheet" href="style.css">
+<style>
+
+.checkArea
+{
+	display: flex;
+	flex-direction: row;
+	justify-content: space-between;
+	align-items: start;
+	padding-left: 40px;
+	padding-right: 40px;
+}
+
+.questionArea{
+
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	flex-direction: column;
+	padding: 30px;
+
+}
+
+.questionArea textarea{
+
+	margin-top: 12px;
+	background-color: black;
+	color: white;
+	outline: none;
+	font-size: 14px;
+	width: 40vw;
+	height: 70vh;
+
+}
+.questionArea #userQuestion
+{
+	height: 8vh;
+}
+
+.questionArea #resultBox
+{
+	height: 79vh;
+}
+
+.questionArea button{
+
+	border-radius: 15px;
+	color: orange;
+	background-color: #222222;
+	padding: 8px;
+	font-size: 20px;
+	margin-top: 10px;
+	font-family: Garamond;
+	font-weight: 1000;
+	cursor: pointer;
+
+}
+
+.questionArea h3{
+
+	color: orange;
+	font-family: Verdana;
+	font-size: 30px;
+}
+.uq, .ua{
+	display: flex;
+	
+}
+.uq h4, .ua h4{
+	color: orange;
+	font-size: 24px;
+	margin-right: 5px;
+	margin-block-start: 1em;
+}
+
+
+</style>
+
+<div class="checkArea">
+	<div class="questionArea">
+	
+	
+		<h3>Check your OSY Answers</h3>
+		
+		<div class="uq">
+			<h4>Ques</h4>
+			<textarea id="userQuestion">Define real time operating system. List its any four applications of it.(2 marks) </textarea>
+		</div>
+		<div class="ua">
+			<h4>Ans :</h4></h4>
+			<textarea id="userAnswer">The real-time operating system used for a real-time application means for those applications where data processing should be done in the fixed and small quantum of time.
+Types of real time operating system
+1. Hard real-time
+2. Soft real-time
+Applications:
+1. Flight Control System
+2. Simulations
+3. Industrial control
+4. Military applications
+			</textarea>
+		</div>
+		
+		<button onclick="exec()"> Check </button>
+		
+		
+		
+		<div class="questionArea">
+		<h3>System Prompt</h3>
+		<textarea id="systemPrompt">
+Hi your a MSBTE Diploma Examiner For Subject Operating Systems.
+Your Objective is to examine and check papers and award marks to students.
+You Check Questions and their answers and check the understanding of the student and based on that you award them marks based on understanding and concept.
+
+Student can get Full marks if they understand the concept properly and correctly
+
+Do not deduct Marks for providing extra content in the answer its fine.
+
+Important Instructions to examiners:
+1) The answers should be examined by key words and not as word-to-word as given in the model answer scheme.
+2) The model answer and the answer written by candidate may vary but the examiner may try to assess the understanding level of the candidate.
+3) The language errors such as grammatical, spelling errors should not be given more Importance (Not applicable for subject English and Communication Skills.
+4) While assessing figures, examiner may give credit for principal components indicated in the figure. The figures drawn by candidate and model answer may vary. The examiner may give credit for anyequivalent figure drawn.
+5) Credits may be given step wise for numerical problems. In some cases, the assumed constant values may vary and there may be some difference in the candidate’s answers and model answer.
+6) In case of some questions credit may be given by judgement on part of examiner of relevant answer based on candidate’s understanding.
+7) For programming language papers, credit may be given to any other program based on equivalent concept.
+8) Dont consider Grammatical mistakes for Technical Subject Papers
+
+Please Refer to MSBTE DIPLOMA MODEL ANSWERS for correction.
+
+Please Show the Awarded Marks First, Then the breakdown of how you awarded them, then why you awarded it in that way, then suggestions etc.
+
+If asked for any two then half marks for first part and half marks for second part, similarly if asked for any four then marks divided equally. marks should be awarded in the same fashion.
+
+If full marks are awarded and there is nothing much to suggest you can say none and a small sentence.
+		</textarea>
+		
+		<a href="https://msbte.engg-info.website/sites/default/files/Model%20Answer%2022/22516-2022-Winter-model-answer-paper%5BMsbte%20study%20resources%5D.pdf" target="_blank"><button>  OSY Model Answer 2022  </button></a>
+		<a href="https://msbte.engg-info.website/sites/default/files/New%20fldr1/22516-2019-Winter-model-answer-paper%5BMsbte%20study%20resources%5D.pdf" target="_blank"><button>  OSY Model Answer 2019  </button></a>
+	</div>
+	</div>
+	<div class="questionArea">
+		<h3>Result</h3>
+		<textarea id="resultBox"></textarea>
+		<button>Clear</button>
+	</div>
+</div>
+
+<script>
+var sys = document.getElementById("systemPrompt");
+var usQ = document.getElementById("userQuestion");
+var usA = document.getElementById("userAnswer");
+var res = document.getElementById("resultBox");
+
+var header = {
+
+	"Authorization": "Bearer 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"
+
+};
+
+async function exec()
+{
+	
+	var prompt = 
+	`
+	Examine the below Question and its Answer
+	
+	Question: ${usQ.value}
+	Answer: ${usA.value}
+	`;
+	
+	let postBody = {
+
+	  "messages": 
+	  [
+		{
+		  "role": "system",
+		  "content": sys.value
+		},
+		
+		{
+		  "role": "user",
+		  "content": prompt
+		}
+	  ],
+	  "model": "llama-3.2-90b-text-preview"
+
+	};
+
+
+	var response = await fetch("https://api.groq.com/openai/v1/chat/completions", {
+	
+			method: "POST",
+			headers: header,
+			body: JSON.stringify(postBody)
+	});
+	
+	var data = await response.json();
+	res.innerHTML = data.choices[0].message.content;
+	console.log(prompt);
+	console.log(data);
+}
+
+
+
+</script>
+</body>
+</html>

@@ -60,7 +60,7 @@
 			}
 		}
 		
-		if(ytKey === undefined)
+		if(ytKey === undefined && trailerData.results[0].key!==undefined)
 		{	
 			if(ytAltKey !== undefined)
 			ytKey = ytAltKey;
