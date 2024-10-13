@@ -75,6 +75,15 @@
 	margin-right: 5px;
 	margin-block-start: 1em;
 }
+#modelOption{
+
+margin-top: 15px;
+margin-bottom: 7px;
+background-color: #222222;
+color: orange;
+font-family: Verdana;
+font-size: 16px;
+}
 
 
 </style>
@@ -101,8 +110,19 @@ Applications:
 3. Industrial control
 4. Military applications
 			</textarea>
+			
 		</div>
-		
+		<select id="modelOption">
+			<option value="llama-3.2-90b-text-preview">Llama 3.2 90b</option>
+			<option value="llama-3.2-3b-preview">Llama 3.1 3b</option>
+			<option value="llama-3.2-1b-preview">Llama 3.2 1b</option>
+			<option value="llama-3.1-70b-versatile">Llama 3.1 70b</option>
+			<option value="llama-3.1-8b-instant">Llama 3.1 8b</option>
+			<option value="llama3-groq-70b-8192-tool-use-preview">Llama 3 70b</option>
+			<option value="gemma2-9b-it">Gemma2 9b</option>
+			<option value="gemma2-7b-it">Gemma2 7b</option>
+			<option value="mixtral-8x7b-32768">Mixtral8 7b</option>
+		</select>
 		<button onclick="exec()" id="checkbtn"> Check </button>
 		
 		
@@ -153,6 +173,7 @@ var sys = document.getElementById("systemPrompt");
 var usQ = document.getElementById("userQuestion");
 var usA = document.getElementById("userAnswer");
 var res = document.getElementById("resultBox");
+var model = document.getElementById("modelOption");
 
 var header = {
 
@@ -201,7 +222,7 @@ async function exec()
 		  "content": prompt
 		}
 	  ],
-	  "model": "llama-3.2-90b-text-preview"
+	  "model": model.value
 
 	};
 
