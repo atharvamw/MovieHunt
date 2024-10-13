@@ -103,7 +103,7 @@ Applications:
 			</textarea>
 		</div>
 		
-		<button onclick="exec()"> Check </button>
+		<button onclick="exec()" id="checkbtn"> Check </button>
 		
 		
 		
@@ -160,8 +160,24 @@ var header = {
 
 };
 
-async function exec()
+async function pauseCheck()
 {
+	var btn = document.getElementById("checkbtn");
+	btn.disabled = true;
+	btn.style.color = "gray";
+	
+	setTimeout(()=>{
+		
+		btn.style.color = "orange";
+		btn.disabled = false;
+	
+	},5000);
+}
+
+async function exec()
+{	
+
+	pauseCheck();
 	
 	var prompt = 
 	`
@@ -201,6 +217,7 @@ async function exec()
 	res.innerHTML = data.choices[0].message.content;
 	console.log(prompt);
 	console.log(data);
+	
 }
 
 
