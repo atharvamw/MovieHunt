@@ -1,0 +1,249 @@
+<html>
+<body>
+<script src="navbar.js"></script>
+<link rel="stylesheet" href="style.css">
+<style>
+
+.checkArea
+{
+	display: flex;
+	flex-direction: row;
+	justify-content: space-between;
+	align-items: start;
+	padding-left: 40px;
+	padding-right: 40px;
+}
+
+.questionArea{
+
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	flex-direction: column;
+	padding: 30px;
+
+}
+
+.questionArea textarea{
+
+	margin-top: 20px;
+	margin-bottom: 10px;
+	background-color: black;
+	color: white;
+	outline: none;
+	font-size: 14px;
+	width: 40vw;
+	height: 70vh;
+
+}
+.questionArea #userQuestion
+{
+	height: 30vh;
+}
+
+.questionArea #resultBox
+{
+	height: 79vh;
+}
+
+.questionArea button{
+
+	border-radius: 15px;
+	color: orange;
+	background-color: #222222;
+	padding: 8px;
+	font-size: 20px;
+	margin-top: 12px;
+	font-family: Garamond;
+	font-weight: 1000;
+	cursor: pointer;
+	box-shadow: 0px 0px 5px orange;
+
+}
+
+.questionArea h3{
+
+	color: orange;
+	font-family: Verdana;
+	font-size: 30px;
+}
+.uq, .ua{
+	
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	justify-content: center;
+	
+}
+
+.uq button{
+	
+	display: block;
+	
+}
+.uq h4, .ua h4{
+	color: orange;
+	font-size: 24px;
+	margin-right: 5px;
+	margin-block-start: 1em;
+	margin-top: 10px;
+}
+#modelOption, .choice{
+margin-top: 5px;
+margin-bottom: 15px;
+background-color: #222222;
+color: orange;
+font-family: Verdana;
+font-size: 16px;
+margin-right: 10px;
+}
+
+
+</style>
+
+<div>
+	<div class="questionArea">
+	
+	
+		<h3>Get JavaScript Problems To Solve</h3>
+		
+		<div class="uq">
+		<div>
+			<select id="modelOption">
+				<option value="llama-3.2-90b-text-preview">Llama 3.2 90b</option>
+				<option value="llama-3.2-3b-preview">Llama 3.1 3b</option>
+				<option value="llama-3.2-1b-preview">Llama 3.2 1b</option>
+				<option value="llama-3.1-70b-versatile">Llama 3.1 70b</option>
+				<option value="llama-3.1-8b-instant">Llama 3.1 8b</option>
+				<option value="llama3-groq-70b-8192-tool-use-preview">Llama 3 70b</option>
+				<option value="gemma2-9b-it">Gemma2 9b</option>
+				<option value="gemma2-7b-it">Gemma2 7b</option>
+				<option value="mixtral-8x7b-32768">Mixtral8 7b</option>
+			</select>
+			
+			<select id="difficulty" class="choice">
+				<option value="very easy">Very Easy</option>
+				<option value="easy">Easy</option>
+				<option value="moderate">Medium</option>
+				<option value="moderately difficult">Hard</option>
+				<option value="hard">Very Hard</option>
+			</select>
+		</div>
+		<button onclick="question()" id="quesbtn"> Get A Problem </button>
+		
+			<textarea id="userQuestion" spellcheck="false"></textarea>
+		</div>
+		<div class="ua">
+			<button onclick="solution()" id="solbtn"> Get Solution </button>
+			<textarea id="userAnswer" spellcheck="false"></textarea>
+			
+		</div>
+</div>
+
+<script>
+var usQ = document.getElementById("userQuestion");
+var usA = document.getElementById("userAnswer");
+var model = document.getElementById("modelOption");
+
+var header = {
+
+	"Authorization": "Bearer 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"
+
+};
+
+async function pauseCheck(btn)
+{
+	var btn = document.getElementById(btn);
+	btn.disabled = true;
+	btn.style.color = "gray";
+	
+	setTimeout(()=>{
+		
+		btn.style.color = "orange";
+		btn.disabled = false;
+	
+	},5000);
+}
+
+async function ask(prompt)
+{
+	
+	let postBody = {
+
+	  "messages": 
+	  [
+		{
+		  "role": "system",
+		  "content": ""
+		},
+		
+		{
+		  "role": "user",
+		  "content": prompt
+		}
+	  ],
+	  "model": model.value
+
+	};
+
+
+	var response = await fetch("https://api.groq.com/openai/v1/chat/completions", {
+	
+			method: "POST",
+			headers: header,
+			body: JSON.stringify(postBody)
+	});
+	
+	var data = await response.json();
+	return data.choices[0].message.content;
+}
+
+async function question()
+{	
+	var diff = document.getElementById("difficulty").value;
+	pauseCheck("quesbtn");
+	
+	var prompt = 
+	`
+You must answer with only the problem statement and nothing else.
+Difficulty Should be ${diff}.
+The problem can contain any one topic and atmost 3 topics together no more than that.
+Please generate problem statement for the subject CSS (Client Side Scripting) Javascript.
+You must refer the msbte diploma subject css 22519 and the questions must be relevant to the css sylabus in msbte diploma.
+Sylabus is - 
+0) Variables, Expressions, Operators
+1) Control and Decision Making Structures
+2) Creating Objects and iterating through their properties
+3) Arrays and their methods
+4) Strings and their methods
+5) Functions
+6) Window Object Methods and Creating a new window and changing its contents.
+7) Location Object
+8) Rotating Banner, Slideshow
+9) Cookies Creation Deletion Updating, Reading
+10) Form Elements, Creation of Form and Form Validation (Changing Select Options Dynamically, Evaluating Checkbox, Changing Label Dynamically)
+11) Events Such as onclick, ondblclick, mouseevents, keyevents, context menu, focusing window, blurring window.
+12) Regular Expressions and Validating Different Input Fields using RegExp like phone no, adharcard, email, digits, ip address or any thing
+13) Frames and Changing the content of one frame from another frame
+14) Creating Menus using select options or anchor tags etc. floating menu, drop down menu, chain menu, tree menu, side bar menu
+15) Status bar and crawling or moving the status bar.
+16) Rollovers, Text and Image Text Rollovers
+17) Protecting Webpage by Disabling right click, hiding the javascript in src code file, concealing email address
+`;
+
+	usQ.innerHTML = await ask(prompt);	
+}
+
+async function solution()
+{
+	pauseCheck("solbtn");
+	var Question = usQ.innerHTML + "\n Write Full HTML Code, preferrably a smaller one.Refer the msbte diploma subject css (22519), Also try to write everything in single file and dont include style if unecessary \n should start with the code and at the end give explanation seperated by three hypherns --- ";
+	console.log(usQ.innerHTML)
+	usA.innerHTML = await ask(Question);
+	
+}
+
+
+</script>
+</body>
+</html>
