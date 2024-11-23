@@ -292,9 +292,7 @@ async function check()
 	It is fine if entire HTML code is provided when asked for only javascript.
 	`
 	
-	console.log(Ans);
 	usA.innerHTML = await ask(Ans,sys);
-	console.log(usA.value.substring(0,10).includes("1"));
 	
 	if(usA.value.substring(0,10).includes("1"))
 	{
