@@ -32,18 +32,18 @@
 	color: white;
 	outline: none;
 	font-size: 14px;
-	width: 40vw;
+	width: 50vw;
 	height: 70vh;
 
 }
 .questionArea #userQuestion
 {
-	height: 30vh;
+	width: 30vw;
 }
 
-.questionArea #resultBox
+.questionArea #Answer
 {
-	height: 79vh;
+	width: 80vw;
 }
 
 .questionArea button{
@@ -59,6 +59,14 @@
 	cursor: pointer;
 	box-shadow: 0px 0px 5px orange;
 
+}
+
+.problemArea{
+	display: flex;
+	flex-direction: row;
+	align-items: start;
+	gap: 20px 20px;
+	
 }
 
 .questionArea h3{
@@ -88,6 +96,7 @@
 	margin-block-start: 1em;
 	margin-top: 10px;
 }
+
 #modelOption, .choice{
 margin-top: 5px;
 margin-bottom: 15px;
@@ -104,46 +113,67 @@ margin-right: 10px;
 <div>
 	<div class="questionArea">
 	
-	
 		<h3>Get JavaScript Problems To Solve</h3>
+		<h3 id="score">Your Score: 0</h3>
 		
-		<div class="uq">
-		<div>
-			<select id="modelOption">
-				<option value="llama-3.2-90b-text-preview">Llama 3.2 90b</option>
-				<option value="llama-3.2-3b-preview">Llama 3.1 3b</option>
-				<option value="llama-3.2-1b-preview">Llama 3.2 1b</option>
-				<option value="llama-3.1-70b-versatile">Llama 3.1 70b</option>
-				<option value="llama-3.1-8b-instant">Llama 3.1 8b</option>
-				<option value="llama3-groq-70b-8192-tool-use-preview">Llama 3 70b</option>
-				<option value="gemma2-9b-it">Gemma2 9b</option>
-				<option value="gemma2-7b-it">Gemma2 7b</option>
-				<option value="mixtral-8x7b-32768">Mixtral8 7b</option>
-			</select>
+			<div>
+				<select id="modelOption">
+					<option value="llama-3.2-90b-text-preview">Llama 3.2 90b</option>
+					<option value="llama-3.2-3b-preview">Llama 3.1 3b</option>
+					<option value="llama-3.2-1b-preview">Llama 3.2 1b</option>
+					<option value="llama-3.1-70b-versatile">Llama 3.1 70b</option>
+					<option value="llama-3.1-8b-instant">Llama 3.1 8b</option>
+					<option value="llama3-groq-70b-8192-tool-use-preview">Llama 3 70b</option>
+					<option value="gemma2-9b-it">Gemma2 9b</option>
+					<option value="gemma2-7b-it">Gemma2 7b</option>
+					<option value="mixtral-8x7b-32768">Mixtral8 7b</option>
+				</select>
+				
+				<select id="difficulty" class="choice">
+					<option value="very easy">Very Easy</option>
+					<option value="easy">Easy</option>
+					<option value="moderate">Medium</option>
+					<option value="moderately difficult">Hard</option>
+					<option value="hard">Very Hard</option>
+				</select>
+			</div>
 			
-			<select id="difficulty" class="choice">
-				<option value="very easy">Very Easy</option>
-				<option value="easy">Easy</option>
-				<option value="moderate">Medium</option>
-				<option value="moderately difficult">Hard</option>
-				<option value="hard">Very Hard</option>
-			</select>
+		<div class="problemArea">
+			<div class="uq">
+				<button onclick="question()" id="quesbtn"> Get A Problem </button>
+				<textarea id="userQuestion" spellcheck="false"></textarea>
+			</div>
+			
+			<div class="ua">
+				<button onclick="check()" id="checkbtn"> Check Your Answer </button>
+				<textarea id="Check" spellcheck="false"></textarea>
+			</div>
 		</div>
-		<button onclick="question()" id="quesbtn"> Get A Problem </button>
 		
-			<textarea id="userQuestion" spellcheck="false"></textarea>
-		</div>
 		<div class="ua">
 			<button onclick="solution()" id="solbtn"> Get Solution </button>
-			<textarea id="userAnswer" spellcheck="false"></textarea>
-			
+			<textarea id="Answer" spellcheck="false"></textarea>
 		</div>
 </div>
 
 <script>
 var usQ = document.getElementById("userQuestion");
-var usA = document.getElementById("userAnswer");
+var usA = document.getElementById("Answer");
+var usC = document.getElementById("Check");
 var model = document.getElementById("modelOption");
+var score = document.getElementById("score");
+var today = new Date();
+
+if(localStorage.getItem("date")!= today.getDate() || localStorage.getItem("month")!=today.getMonth() || localStorage.getItem("year")!=today.getFullYear())
+{
+	localStorage.setItem("score",0);
+}
+
+localStorage.setItem("date",today.getDate());
+localStorage.setItem("month",today.getMonth());
+localStorage.setItem("year",today.getFullYear());
+
+score.innerText = "Your Score: " + localStorage.getItem("score");
 
 var header = {
 
@@ -165,7 +195,7 @@ async function pauseCheck(btn)
 	},5000);
 }
 
-async function ask(prompt)
+async function ask(prompt,sys="")
 {
 	
 	let postBody = {
@@ -174,7 +204,7 @@ async function ask(prompt)
 	  [
 		{
 		  "role": "system",
-		  "content": ""
+		  "content": sys
 		},
 		
 		{
@@ -238,8 +268,49 @@ async function solution()
 {
 	pauseCheck("solbtn");
 	var Question = usQ.innerHTML + "\n Write Full HTML Code, preferrably a smaller one.Refer the msbte diploma subject css (22519), Also try to write everything in single file and dont include style if unecessary \n should start with the code and at the end give explanation seperated by three hypherns --- ";
-	console.log(usQ.innerHTML)
 	usA.innerHTML = await ask(Question);
+}
+
+async function check()
+{
+	pauseCheck("checkbtn");
+	
+	var Ans =  
+	`Question:  
+	${usQ.value}
+	Answer: 
+	"""
+	${usC.value}
+	"""`;
+	
+	var sys = 
+	`
+	Check the Client Side Scripting Code against the question provided.
+	If this answer is correct first character of your response should be 1 otherwise 0.
+	If the Answer is blank Answer: <nothing> then respond with with "Please Write Your Answer" and nothing else.
+	Just respond in two sentences dont check too strictly.
+	It is fine if entire HTML code is provided when asked for only javascript.
+	`
+	
+	console.log(Ans);
+	usA.innerHTML = await ask(Ans,sys);
+	console.log(usA.value.substring(0,10).includes("1"));
+	
+	if(usA.value.substring(0,10).includes("1"))
+	{
+		var scoreVal = localStorage.getItem("score");
+		
+		if(score!=null)
+		{
+			localStorage.setItem("score",parseInt(scoreVal)+1);
+		}
+		else
+		{
+			localStorage.setItem("score",1);
+		}
+		
+		score.innerText = "Your Score: " + localStorage.getItem("score");
+	}
 	
 }
 
