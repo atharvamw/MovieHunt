@@ -16,6 +16,7 @@ nav.innerHTML =
 		</li>
 		
 		<li><a href="index.html">Home</a></li>
+		<li><a href="file:///C:/Users/Admin/Desktop/5th%20Sem/IPL/ipl.html">Sports</a></li>
 		<li><a href="#">Movies</a></li>
 		<li><a href="#">TV Shows</a></li>
 		<li>
